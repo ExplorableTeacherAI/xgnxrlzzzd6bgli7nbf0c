@@ -1,6 +1,4 @@
 import { type ReactElement } from "react";
-// import { Block } from "@/components/templates";
-// import { StackLayout, SplitLayout, GridLayout, ScrollytellingLayout, ScrollStep, ScrollVisual } from "@/components/layouts";
 
 // Initialize variables and their colors from this file's variable definitions
 import { useVariableStore, initializeVariableColors } from "@/stores";
@@ -8,82 +6,36 @@ import { getDefaultValues, variableDefinitions } from "./variables";
 useVariableStore.getState().initialize(getDefaultValues());
 initializeVariableColors(variableDefinitions);
 
+// Import section blocks
+import { section1Blocks } from "./sections/Section1GraphsEverywhere";
+import { section2Blocks } from "./sections/Section2GraphVocabulary";
+import { section3Blocks } from "./sections/Section3WhyGNNs";
+import { section4Blocks } from "./sections/Section4MessagePassing";
+import { section5Blocks } from "./sections/Section5Summary";
+
 /**
  * ------------------------------------------------------------------
- * BLOCK CONFIGURATION
+ * A GENTLE INTRODUCTION TO GRAPH NEURAL NETWORKS
  * ------------------------------------------------------------------
- * This file is the entry point for your lesson content.
- * 
- * INSTRUCTIONS:
- * 1. Create your content using <Block> components.
- * 2. Use Layout components to organize your blocks.
- * 3. Add your blocks to the `blocks` array below.
- * 
- * ------------------------------------------------------------------
- * CROSS-BLOCK VARIABLES
- * ------------------------------------------------------------------
- * Variables can be shared across blocks using the global store.
- * 
- * DEFINE VARIABLES: src/data/variables.ts (use only variables.ts in this file; same structure as exampleBlocks + exampleVariables)
- * 
- * USAGE IN BLOCKS:
- * 
- * // Reading a value (auto-updates when changed):
- * import { useVar } from '@/stores';
- * const amplitude = useVar('amplitude', 1);
- * 
- * // Setting a value:
- * import { useSetVar } from '@/stores';
- * const setVar = useSetVar();
- * setVar('amplitude', 2.5);
- * 
- * // InlineScrubbleNumber (from variables.ts): getVariableInfo(name) + numberPropsFromDefinition(...)
- * <InlineScrubbleNumber varName="amplitude" {...numberPropsFromDefinition(getVariableInfo('amplitude'))} />
- * 
- * ------------------------------------------------------------------
- * AVAILABLE LAYOUTS
- * ------------------------------------------------------------------
- * 
- * 1. StackLayout
- *    - Best for: Title headers, introductory text, broad visualizations.
- *    - Usage:
- *      <StackLayout maxWidth="xl">
- *          <Block id="intro">...</Block>
- *      </StackLayout>
- * 
- * 2. SplitLayout
- *    - Best for: Side-by-side content (e.g., Text + Visualization).
- *    - Usage:
- *      <SplitLayout ratio="1:1" gap="lg">
- *          <Block id="left">...</Block>
- *          <Block id="right">...</Block>
- *      </SplitLayout>
- * 
- * 3. GridLayout
- *    - Best for: Multiple equal-sized items (cards, galleries).
- *    - Usage:
- *      <GridLayout columns={3} gap="md">
- *          <Block id="item-1">...</Block>
- *          <Block id="item-2">...</Block>
- *          <Block id="item-3">...</Block>
- *      </GridLayout>
- * 
- * 4. ScrollytellingLayout
- *    - Best for: Narrative steps with a reactive sticky visualization.
- *    - Usage:
- *      <ScrollytellingLayout varName="scrollStep" visualPosition="right">
- *          <ScrollStep><Block id="step-0">...</Block></ScrollStep>
- *          <ScrollStep><Block id="step-1">...</Block></ScrollStep>
- *          <ScrollVisual><Block id="viz">...</Block></ScrollVisual>
- *      </ScrollytellingLayout>
- * 
- * EXAMPLES:
- * See `src/data/exampleBlocks.tsx` for comprehensive examples.
- * 
- * NOTE: If you are seeing examples in the browser instead of this content,
- * check your .env file and set VITE_SHOW_EXAMPLES=false.
+ *
+ * This lesson introduces the foundational concepts of Graph Neural Networks
+ * to students with no prior knowledge. It covers:
+ *
+ * 1. Graphs Are Everywhere - Using molecules to show graphs in the real world
+ * 2. What Makes a Graph a Graph - Vocabulary: nodes, edges, degree
+ * 3. Why Can't We Just Use Regular Neural Networks - The ordering problem
+ * 4. The Key Idea — Learning from Neighbors - Message passing intuition
+ * 5. Putting It Together - Real-world applications and summary
+ *
+ * Target Audience: Post-secondary students (ages 17-20)
+ * Prior Knowledge: None assumed
+ * Key Challenge Addressed: Making graphs feel tangible, not abstract
  */
 
 export const blocks: ReactElement[] = [
-    // Start adding your blocks here!
+    ...section1Blocks,
+    ...section2Blocks,
+    ...section3Blocks,
+    ...section4Blocks,
+    ...section5Blocks,
 ];

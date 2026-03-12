@@ -1,12 +1,12 @@
 /**
  * Variables Configuration
  * =======================
- * 
+ *
  * CENTRAL PLACE TO DEFINE ALL SHARED VARIABLES
- * 
+ *
  * This file defines all variables that can be shared across sections.
  * AI agents should read this file to understand what variables are available.
- * 
+ *
  * USAGE:
  * 1. Define variables here with their default values and metadata
  * 2. Use them in any section with: const x = useVar('variableName', defaultValue)
@@ -55,106 +55,240 @@ export interface VariableDefinition {
  * =====================================================
  * 🎯 DEFINE YOUR VARIABLES HERE
  * =====================================================
- * 
- * SUPPORTED TYPES:
- * 
- * 1. NUMBER (slider):
- *    { defaultValue: 5, type: 'number', min: 0, max: 10, step: 1 }
- * 
- * 2. TEXT (free text):
- *    { defaultValue: 'Hello', type: 'text', placeholder: 'Enter text...' }
- * 
- * 3. SELECT (dropdown):
- *    { defaultValue: 'sine', type: 'select', options: ['sine', 'cosine', 'tangent'] }
- * 
- * 4. BOOLEAN (toggle):
- *    { defaultValue: true, type: 'boolean' }
- * 
- * 5. ARRAY (list of numbers):
- *    { defaultValue: [1, 2, 3], type: 'array' }
- * 
- * 6. OBJECT (complex data):
- *    { defaultValue: { x: 5, y: 10 }, type: 'object', schema: '{ x: number, y: number }' }
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
     // ========================================
-    // ADD YOUR VARIABLES HERE
+    // SECTION 1: Graphs Are Everywhere
     // ========================================
 
-    // Uncomment and modify these examples for your lesson:
+    moleculeHighlight: {
+        defaultValue: null,
+        type: 'linkedHighlight',
+        label: 'Molecule Highlight',
+        description: 'Active highlight for molecule diagram',
+        color: '#6366F1',
+        bgColor: 'rgba(99, 102, 241, 0.15)',
+    },
 
-    /*
-    // ─────────────────────────────────────────
-    // NUMBER - Use with sliders
-    // ─────────────────────────────────────────
-    myValue: {
+    // ========================================
+    // SECTION 2: What Makes a Graph a Graph
+    // ========================================
+
+    selectedNode: {
+        defaultValue: 'none',
+        type: 'text',
+        label: 'Selected Node',
+        description: 'Currently selected node in the graph',
+    },
+
+    nodeCount: {
         defaultValue: 5,
         type: 'number',
-        label: 'My Value',
-        description: 'A number that controls something',
-        unit: 'm',           // optional unit display
+        label: 'Number of Nodes',
+        description: 'How many nodes in the example graph',
+        min: 3,
+        max: 8,
+        step: 1,
+        color: '#62D0AD',
+    },
+
+    edgeCount: {
+        defaultValue: 6,
+        type: 'number',
+        label: 'Number of Edges',
+        description: 'How many edges in the example graph',
+        min: 2,
+        max: 15,
+        step: 1,
+        color: '#8E90F5',
+    },
+
+    nodeDegree: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Node Degree',
+        description: 'Number of connections for a node',
         min: 0,
-        max: 10,
-        step: 0.5,
+        max: 7,
+        step: 1,
+        color: '#F7B23B',
     },
 
-    // ─────────────────────────────────────────
-    // TEXT - Free text input
-    // ─────────────────────────────────────────
-    lessonTitle: {
-        defaultValue: 'My Lesson',
+    graphHighlight: {
+        defaultValue: null,
+        type: 'linkedHighlight',
+        label: 'Graph Highlight',
+        description: 'Active highlight for graph vocabulary',
+        color: '#62D0AD',
+        bgColor: 'rgba(98, 208, 173, 0.15)',
+    },
+
+    // Assessment questions Section 2
+    answerNodeDefinition: {
+        defaultValue: '',
         type: 'text',
-        label: 'Lesson Title',
-        description: 'The title of your lesson',
-        placeholder: 'Enter a title...',
+        label: 'Node Definition Answer',
+        description: 'Student answer for what a node represents',
+        placeholder: '???',
+        correctAnswer: 'entity',
+        color: '#3B82F6',
     },
 
-    // ─────────────────────────────────────────
-    // SELECT - Dropdown with options
-    // ─────────────────────────────────────────
-    difficulty: {
-        defaultValue: 'medium',
+    answerEdgeDefinition: {
+        defaultValue: '',
         type: 'select',
-        label: 'Difficulty',
-        description: 'The difficulty level of the lesson',
-        options: ['easy', 'medium', 'hard', 'expert'],
+        label: 'Edge Definition Answer',
+        description: 'Student answer for what an edge represents',
+        placeholder: '???',
+        correctAnswer: 'connection',
+        options: ['entity', 'connection', 'number', 'label'],
+        color: '#8E90F5',
     },
 
-    // ─────────────────────────────────────────
-    // BOOLEAN - Toggle switch
-    // ─────────────────────────────────────────
-    showHints: {
-        defaultValue: true,
-        type: 'boolean',
-        label: 'Show Hints',
-        description: 'Toggle to show or hide hints',
+    answerDegreeCalculation: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Degree Calculation Answer',
+        description: 'Student answer for degree of node B',
+        placeholder: '???',
+        correctAnswer: '3',
+        color: '#F7B23B',
     },
 
-    // ─────────────────────────────────────────
-    // ARRAY - List of numbers
-    // ─────────────────────────────────────────
-    dataPoints: {
-        defaultValue: [1, 4, 9, 16, 25],
-        type: 'array',
-        label: 'Data Points',
-        description: 'Y-values for plotting a graph',
+    // ========================================
+    // SECTION 3: Why Not Regular Neural Networks
+    // ========================================
+
+    gridSize: {
+        defaultValue: 4,
+        type: 'number',
+        label: 'Grid Size',
+        description: 'Size of the image grid',
+        min: 2,
+        max: 6,
+        step: 1,
+        color: '#62D0AD',
     },
 
-    // ─────────────────────────────────────────
-    // OBJECT - Complex structured data
-    // ─────────────────────────────────────────
-    graphSettings: {
-        defaultValue: { 
-            xMin: -10, 
-            xMax: 10, 
-            showGrid: true 
-        },
-        type: 'object',
-        label: 'Graph Settings',
-        description: 'Configuration for the graph display',
-        schema: '{ xMin: number, xMax: number, showGrid: boolean }',
+    permutationIndex: {
+        defaultValue: 0,
+        type: 'number',
+        label: 'Permutation Index',
+        description: 'Which node ordering to show',
+        min: 0,
+        max: 5,
+        step: 1,
+        color: '#8E90F5',
     },
-    */
+
+    dataType: {
+        defaultValue: 'image',
+        type: 'select',
+        label: 'Data Type',
+        description: 'Type of data being visualized',
+        options: ['image', 'graph'],
+        color: '#AC8BF9',
+    },
+
+    answerWhyNotGrid: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Why Not Grid Answer',
+        description: 'Student answer for why graphs cant be grids',
+        placeholder: '???',
+        correctAnswer: 'no fixed order',
+        options: ['too many nodes', 'no fixed order', 'edges are curved', 'nodes have colors'],
+        color: '#62CCF9',
+    },
+
+    // ========================================
+    // SECTION 4: Learning from Neighbors
+    // ========================================
+
+    messagePassingStep: {
+        defaultValue: 0,
+        type: 'number',
+        label: 'Message Passing Step',
+        description: 'Current step in message passing visualization',
+        min: 0,
+        max: 3,
+        step: 1,
+        color: '#62D0AD',
+    },
+
+    neighborhoodRadius: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Neighborhood Radius',
+        description: 'How many hops to consider as neighbors',
+        min: 1,
+        max: 3,
+        step: 1,
+        color: '#F7B23B',
+    },
+
+    focusNode: {
+        defaultValue: 'A',
+        type: 'select',
+        label: 'Focus Node',
+        description: 'Which node to focus on for neighborhood exploration',
+        options: ['A', 'B', 'C', 'D', 'E'],
+        color: '#8E90F5',
+    },
+
+    neighborHighlight: {
+        defaultValue: null,
+        type: 'linkedHighlight',
+        label: 'Neighbor Highlight',
+        description: 'Highlight for neighbor visualization',
+        color: '#F7B23B',
+        bgColor: 'rgba(247, 178, 59, 0.15)',
+    },
+
+    answerNeighborCount: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Neighbor Count Answer',
+        description: 'Student answer for number of 1-hop neighbors',
+        placeholder: '???',
+        correctAnswer: '3',
+        color: '#62D0AD',
+    },
+
+    answerMessagePassing: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Message Passing Answer',
+        description: 'Student answer about message passing',
+        placeholder: '???',
+        correctAnswer: 'neighbors',
+        options: ['all nodes', 'neighbors', 'random nodes', 'itself only'],
+        color: '#8E90F5',
+    },
+
+    // ========================================
+    // SECTION 5: Putting It Together
+    // ========================================
+
+    applicationExample: {
+        defaultValue: 'social',
+        type: 'select',
+        label: 'Application Example',
+        description: 'Which GNN application to show',
+        options: ['social', 'molecule', 'recommendation'],
+        color: '#AC8BF9',
+    },
+
+    answerGnnApplication: {
+        defaultValue: '',
+        type: 'select',
+        label: 'GNN Application Answer',
+        description: 'Student answer about GNN applications',
+        placeholder: '???',
+        correctAnswer: 'all of these',
+        options: ['only molecules', 'only social networks', 'only recommendations', 'all of these'],
+        color: '#62D0AD',
+    },
 };
 
 /**
