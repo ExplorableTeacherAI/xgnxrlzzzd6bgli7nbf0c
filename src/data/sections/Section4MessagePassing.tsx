@@ -15,7 +15,28 @@ import {
     choicePropsFromDefinition,
     togglePropsFromDefinition,
 } from "../variables";
-import { useVar } from "@/stores";
+import { useVar, useSetVar } from "@/stores";
+
+// ── Message Passing Slider Component ──────────────────────────────────────────
+
+function MessagePassingSlider() {
+    const step = useVar("messagePassingStep", 0) as number;
+    const setVar = useSetVar();
+
+    return (
+        <div className="flex items-center justify-center gap-4">
+            <span className="text-sm text-slate-600">Step:</span>
+            <input
+                type="range"
+                min="0"
+                max="3"
+                value={step}
+                onChange={(e) => setVar("messagePassingStep", parseInt(e.target.value))}
+                className="w-48 accent-[#62D0AD]"
+            />
+        </div>
+    );
+}
 
 // ── Neighborhood Visualization ────────────────────────────────────────────────
 
@@ -452,20 +473,7 @@ export const section4Blocks: ReactElement[] = [
         <Block id="message-passing-graph" padding="sm" hasVisualization>
             <div className="relative">
                 <div className="space-y-4">
-                    <div className="flex items-center justify-center gap-4">
-                        <span className="text-sm text-slate-600">Step:</span>
-                        <input
-                            type="range"
-                            min="0"
-                            max="3"
-                            value={useVar("messagePassingStep", 0) as number}
-                            onChange={(e) => {
-                                const { useVariableStore } = require("@/stores");
-                                useVariableStore.getState().setVariable("messagePassingStep", parseInt(e.target.value));
-                            }}
-                            className="w-48 accent-[#62D0AD]"
-                        />
-                    </div>
+                    <MessagePassingSlider />
                     <MessagePassingVisualization />
                 </div>
                 <InteractionHintSequence
