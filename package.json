@@ -2,7 +2,7 @@
   "name": "mathvibe",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://test-14.mathvibe.space/",
+  "homepage": "https://introduction-to-graph-neural-networks.mathvibe.space/",
   "type": "module",
   "scripts": {
     "dev": "vite",
